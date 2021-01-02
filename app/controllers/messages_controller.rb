@@ -1,16 +1,24 @@
 class MessagesController < ApplicationController
 
+  def index
+    @messages = Message.all
+  end
+
   def new
     @message = Message.new
   end
 
-   def create
-    User.create(user_params)
+  def create
+    Message.create(message_params)
+  end
+
+  def show
+    @message = Message.find(params[:id])
   end
 
   private
-  def user_params
-    params.require(:user).permit(:title, :content)
+  def message_params
+    params.require(:message).permit(:title, :content)
   end
 
 end
